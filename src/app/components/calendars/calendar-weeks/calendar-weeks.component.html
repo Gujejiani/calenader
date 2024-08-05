@@ -1,7 +1,7 @@
 <!-- calendar-weeks.component.html -->
 <div class="calendar-table-container">
     <div class="calendar-table-scroll">
-    <table mat-table [dataSource]="dataSource()" class="calendar-table">
+    <table mat-table [dataSource]="dataSource()"  [trackBy]="myTrackById" class="calendar-table">
       <!-- Time Column -->
       <ng-container matColumnDef="time">
         <th mat-header-cell *matHeaderCellDef class="header-cell time-header"></th>
@@ -10,32 +10,182 @@
   
       <!-- Columns for each day -->
       <ng-container matColumnDef="monday">
-        <th mat-header-cell *matHeaderCellDef class="header-cell">Monday</th>
-        <td  mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('monday', element)" >{{element.monday}}</td>
+  
+        <th  mat-header-cell *matHeaderCellDef class="header-cell">Monday</th>
+        <td  mat-cell *matCellDef="let element" class="cell" [ngClass]="{'cell--editing': element.monday===editingText}" (click)="onCellClick('monday', element)" >
+
+         @if (element.monday ===editingText) {
+          <div class="selected-calendar" >
+
+            <span>
+              {{element.monday}}
+            </span>
+      
+  
+       
+              <span>{{element.betweentime}}</span>
+           
+          </div>
+         } @else {
+          <span>
+            {{element.monday}}
+          </span>
+         }
+         
+
+        </td>
       </ng-container>
       <ng-container matColumnDef="tuesday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Tuesday</th>
-        <td mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('tuesday', element)">{{element.tuesday}}</td>
+        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.tuesday===editingText}" (click)="onCellClick('tuesday', element)">
+          
+      
+    
+
+        @if (element.tuesday ===editingText) {
+          <div class="selected-calendar" >
+
+            <span>
+              {{element.tuesday}}
+            </span>
+      
+  
+       
+              <span>{{element.betweentime}}</span>
+           
+          </div>
+         } @else {
+          <span>
+            {{element.tuesday}}
+          </span>
+         }
       </ng-container>
       <ng-container matColumnDef="wednesday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Wednesday</th>
-        <td mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('wednesday', element)">{{element.wednesday}}</td>
+        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.wednesday===editingText}" (click)="onCellClick('wednesday', element)">
+            
+    
+
+          @if (element.wednesday ===editingText) {
+            <div class="selected-calendar" >
+  
+              <span>
+                {{element.wednesday}}
+              </span>
+        
+    
+         
+                <span>{{element.betweentime}}</span>
+             
+            </div>
+           } @else {
+            <span>
+              {{element.wednesday}}
+            </span>
+           }
+        
+        </td>
       </ng-container>
       <ng-container matColumnDef="thursday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Thursday</th>
-        <td mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('thursday', element)">{{element.thursday}}</td>
+        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.thursday===editingText}" (click)="onCellClick('thursday', element)">
+            
+    
+          @if (element.thursday ===editingText) {
+            <div class="selected-calendar" >
+  
+              <span>
+                {{element.thursday}}
+              </span>
+        
+    
+         
+                <span>{{element.betweentime}}</span>
+             
+            </div>
+           } @else {
+            <span>
+              {{element.thursday}}
+            </span>
+           }
+        
+          </td>
       </ng-container>
       <ng-container matColumnDef="friday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Friday</th>
-        <td mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('friday', element)">{{element.friday}}</td>
+        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.friday===editingText}" (click)="onCellClick('friday', element)">
+            
+    
+
+          @if (element.friday ===editingText) {
+            <div class="selected-calendar" >
+  
+              <span>
+                {{element.friday}}
+              </span>
+        
+    
+         
+                <span>{{element.betweentime}}</span>
+             
+            </div>
+           } @else {
+            <span>
+              {{element.friday}}
+            </span>
+           }
+      </td>
       </ng-container>
       <ng-container matColumnDef="saturday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Saturday</th>
-        <td mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('saturday', element)">{{element.saturday}}</td>
+        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.saturday===editingText}" (click)="onCellClick('saturday', element)">
+             <span>
+            {{element.saturday}}
+          </span>
+    
+
+          @if (element.saturday ===editingText) {
+            <div class="selected-calendar" >
+  
+              <span>
+                {{element.saturday}}
+              </span>
+        
+    
+         
+                <span>{{element.betweentime}}</span>
+             
+            </div>
+           } @else {
+            <span>
+              {{element.saturday}}
+            </span>
+           }
+          </td>
       </ng-container>
       <ng-container matColumnDef="sunday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Sunday</th>
-        <td mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('sunday', element)">{{element.sunday}}</td>
+        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.sunday===editingText}" (click)="onCellClick('sunday', element)">
+            
+    
+          @if (element.sunday ===editingText) {
+            <div class="selected-calendar" >
+  
+              <span>
+                {{element.sunday}}
+              </span>
+        
+    
+         
+                <span>{{element.betweentime}}</span>
+             
+            </div>
+           } @else {
+            <span>
+              {{element.sunday}}
+            </span>
+           }
+      </td>
       </ng-container>
   
       <!-- Header and Row Definitions -->

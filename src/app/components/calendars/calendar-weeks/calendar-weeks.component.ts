@@ -1,11 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { CalendarEvent } from '@models/calendar-event';
-
 @Component({
   selector: 'app-calendar-weeks',
   standalone: true,
-  imports: [MatTableModule],
+  imports: [MatTableModule, CommonModule],
   templateUrl: './calendar-weeks.component.html',
   styleUrl: './calendar-weeks.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -13,6 +13,7 @@ import { CalendarEvent } from '@models/calendar-event';
 
 export class CalendarWeeksComponent {
   displayedColumns: string[] = ['time', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+  editingText = 'no title'
   dataSource = signal<CalendarEvent[]>([
     { id: 1, time: '00 AM', monday: 'Meeting', tuesday: '', wednesday: '', thursday: 'Project Work', friday: '', saturday: '', sunday: '', betweentime: '12 - 1 AM', selected: false },
     { id: 2, time: '1 AM', monday: 'Meeting', tuesday: '', wednesday: '', thursday: 'Project Work', friday: '', saturday: '', sunday: '', betweentime: '1 - 2 AM', selected: false },
@@ -44,7 +45,24 @@ export class CalendarWeeksComponent {
 
 
 
-  onCellClick<T>(time: string, row: T extends typeof this.dataSource ? T : never) {
-    console.log(time, row)
+  onCellClick<K extends keyof CalendarEvent>(columnName: K, row: CalendarEvent) {
+    
+    
+    console.log(columnName, row)
+    this.dataSource.set( this.dataSource().map((data=>{
+      if(data.id === row.id){
+        
+          data[columnName] = this.editingText as unknown as CalendarEvent[K]
+        
+      }
+      return data
+    })))
+
   }
+  myTrackById(_index: number, user: {id: number}) {
+ 
+    return user.id;
+  }
+
+ 
 }

@@ -21,5 +21,6 @@ export class CalendarHeaderComponent {
   valueChanged(event: TimePeriod) {
     console.log(event)
     this.timePeriodChanged.emit(event)
+    
   }
 }
