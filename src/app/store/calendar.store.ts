@@ -1,24 +1,39 @@
 import { CalendarEvent } from '@models/calendar-event';
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import { patchState, signalStore, withMethods, withState, } from '@ngrx/signals';
+import { weekCalendarInitialData } from './initial-data';
 
 
 type CalendarState = {
-  books: CalendarEvent[];
-  isLoading: boolean;
-  filter: { query: string; order: 'asc' | 'desc' };
+  weekCalendar: CalendarEvent[];
+  
 };
 
 const initialState: CalendarState = {
-  books: [],
-  isLoading: false,
-  filter: { query: '', order: 'asc' },
+  weekCalendar: weekCalendarInitialData,
+ 
 };
 
-export const BooksStore = signalStore(
+export const CalendarStore = signalStore(
+    {providedIn: 'root'},
   withState(initialState),
   withMethods((store) => ({
-    updateQuery(query: string) {
-        patchState(store, (state) => ({ filter: { ...state.filter, query } }));
+    updateWeekCalendar(weekCalendar: CalendarEvent[]) {
+      patchState(store, (state) => {
+      
+  
+        // Construct the updated state
+        const updatedState = {
+          ...state,
+          weekCalendar // Assuming you want to replace the entire weekCalendar
+        };
+  
+        console.log('updated state ', updatedState.weekCalendar);
+  
+        // Return the updated state
+        return { weekCalendar: updatedState.weekCalendar };
+      });
     }
   })),
 );
+
+

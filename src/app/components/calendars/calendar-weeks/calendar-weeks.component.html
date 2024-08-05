@@ -1,7 +1,7 @@
 <!-- calendar-weeks.component.html -->
 <div class="calendar-table-container">
     <div class="calendar-table-scroll">
-    <table mat-table [dataSource]="dataSource()"  [trackBy]="myTrackById" class="calendar-table">
+    <table mat-table [dataSource]="store.weekCalendar()"  [trackBy]="myTrackById" class="calendar-table">
       <!-- Time Column -->
       <ng-container matColumnDef="time">
         <th mat-header-cell *matHeaderCellDef class="header-cell time-header"></th>
