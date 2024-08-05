@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, signal }
 import {MatTableModule} from '@angular/material/table';
 import { CalendarEvent } from '@models/calendar-event';
 import { CalendarService } from 'services/calendar.service';
-import { CalendarStore } from 'store/calendar.store';
 @Component({
   selector: 'app-calendar-weeks',
   standalone: true,
@@ -26,14 +25,18 @@ export class CalendarWeeksComponent {
 
 
 
-  onCellClick<K extends keyof CalendarEvent>(columnName: K, row: CalendarEvent) {
+  onCellClick<K extends keyof CalendarEvent>($event: any, columnName: K, row: CalendarEvent) {
     
     
-    console.log(columnName, row)
+  
    this.calendarService.updateWeekCalendar(columnName, row, this.editingText)
        
-   
+  this.calendarService.openModal({
+    x: $event.clientX,
+    y:  $event.clientY,
+  })
     
+  
 
   }
   myTrackById(_index: number, user: {id: number}) {

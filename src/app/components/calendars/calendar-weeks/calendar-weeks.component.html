@@ -5,14 +5,14 @@
       <!-- Time Column -->
       <ng-container matColumnDef="time">
         <th mat-header-cell *matHeaderCellDef class="header-cell time-header"></th>
-        <td mat-cell *matCellDef="let element" class="cell time-cell" (click)="onCellClick('time', element)" >{{element.time}}</td>
+        <td mat-cell *matCellDef="let element" class="cell time-cell" (click)="onCellClick($event ,'time', element)" >{{element.time}}</td>
       </ng-container>
   
       <!-- Columns for each day -->
       <ng-container matColumnDef="monday">
   
         <th  mat-header-cell *matHeaderCellDef class="header-cell">Monday</th>
-        <td  mat-cell *matCellDef="let element" class="cell" [ngClass]="{'cell--editing': element.monday===editingText}" (click)="onCellClick('monday', element)" >
+        <td  mat-cell *matCellDef="let element" class="cell" [ngClass]="{'cell--editing': element.monday===editingText}" (click)="onCellClick($event ,'monday', element)" >
 
          @if (element.monday ===editingText) {
           <div class="selected-calendar" >
@@ -37,7 +37,7 @@
       </ng-container>
       <ng-container matColumnDef="tuesday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Tuesday</th>
-        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.tuesday===editingText}" (click)="onCellClick('tuesday', element)">
+        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.tuesday===editingText}" (click)="onCellClick($event ,'tuesday', element)">
           
       
     
@@ -62,7 +62,7 @@
       </ng-container>
       <ng-container matColumnDef="wednesday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Wednesday</th>
-        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.wednesday===editingText}" (click)="onCellClick('wednesday', element)">
+        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.wednesday===editingText}" (click)="onCellClick($event ,'wednesday', element)">
             
     
 
@@ -88,7 +88,7 @@
       </ng-container>
       <ng-container matColumnDef="thursday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Thursday</th>
-        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.thursday===editingText}" (click)="onCellClick('thursday', element)">
+        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.thursday===editingText}" (click)="onCellClick($event ,'thursday', element)">
             
     
           @if (element.thursday ===editingText) {
@@ -113,7 +113,7 @@
       </ng-container>
       <ng-container matColumnDef="friday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Friday</th>
-        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.friday===editingText}" (click)="onCellClick('friday', element)">
+        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.friday===editingText}" (click)="onCellClick($event ,'friday', element)">
             
     
 
@@ -138,7 +138,7 @@
       </ng-container>
       <ng-container matColumnDef="saturday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Saturday</th>
-        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.saturday===editingText}" (click)="onCellClick('saturday', element)">
+        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.saturday===editingText}" (click)="onCellClick($event ,'saturday', element)">
              <span>
             {{element.saturday}}
           </span>
@@ -165,7 +165,7 @@
       </ng-container>
       <ng-container matColumnDef="sunday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Sunday</th>
-        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.sunday===editingText}" (click)="onCellClick('sunday', element)">
+        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.sunday===editingText}" (click)="onCellClick($event ,'sunday', element)">
             
     
           @if (element.sunday ===editingText) {
