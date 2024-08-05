@@ -46,7 +46,7 @@ export class ModalService {
             
             const subscription =   output?.subscribe((res)=>{
             
-                config.outputs[key]();
+                config.outputs[key](res);
             })
 
             this.subscriptions.add(subscription);

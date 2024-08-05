@@ -1,4 +1,4 @@
-import { getModalPosition } from '@utils/index';
+import { getModalPosition, parseBetweentime } from '@utils/index';
 import { Injectable, inject } from "@angular/core";
 import { CalendarEvent } from "@models/calendar-event";
 import { CalendarStore } from "store/calendar.store";
@@ -24,7 +24,7 @@ export class CalendarService {
 
     updateWeekCalendar<K extends keyof CalendarEvent>(columnName: K, row: CalendarEvent, editingText: string) {
     
-    
+    console.log(columnName, row)
         
         const updated = structuredClone(this.store.weekCalendar()).map(((data: CalendarEvent)=>{
             if(data.id === row.id){
@@ -70,9 +70,11 @@ export class CalendarService {
         })
       }
 
-      openModal(modalPosition: {x: number, y: number} ) {
+      openModal(modaldata: {x: number, y: number, row: CalendarEvent, columnName: string} ) {
       
-        const position = getModalPosition(modalPosition)
+        const position = getModalPosition(modaldata)
+        const { startTime, endTime } = parseBetweentime(modaldata.row.betweentime);
+        const today = new Date().toISOString().split('T')[0]; // Get today's date in yyyy-mm-dd format
 
         
         this.modalService.openPortal(
@@ -81,7 +83,11 @@ export class CalendarService {
             inputs: {
                 
                 positionX: `${position.x}px`,
-                positionY: `${position.y}px`
+                positionY: `${position.y}px`,
+                startTime: `${today}T${startTime}`,
+                endTime: `${today}T${endTime}`,
+                rowId: modaldata.row.id,
+                columnName: modaldata.columnName
             },
             
             outputs: {
@@ -91,13 +97,13 @@ export class CalendarService {
                 this.updateWeekCalendar('time', this.getStore().weekCalendar()[0], '');
                 this.modalService.closePortal();
              
-              }
-              // closeModal: () => {
-              //   console.log('close modal')
-              // },
-              // onSubmit: () => {
-              //   console.log('submit')
-              // }
+              },
+              submitForm: <CalendarBookedEventInfo>(data: CalendarBookedEventInfo)=>{
+                
+                this.store.addMeeting(data as any)
+             
+              },
+              
           }
         }
          )

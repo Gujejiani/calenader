@@ -1,3 +1,4 @@
+import { CalendarEventInfo } from './form-model';
 export interface CalendarEvent {
     id: number;
     time: string;
@@ -9,5 +10,5 @@ export interface CalendarEvent {
     saturday: string;
     sunday: string;
     betweentime: string;
-    selected: boolean;
+    bookedMeetings: CalendarEventInfo[];
   }

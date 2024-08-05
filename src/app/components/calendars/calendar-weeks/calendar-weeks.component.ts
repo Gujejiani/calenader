@@ -23,17 +23,24 @@ export class CalendarWeeksComponent {
   
 
 
+  determineIfBooked(columnName: string,row: CalendarEvent){
+
+    return row.bookedMeetings.some((meeting)=> meeting.rowId === row.id && meeting.columnName === columnName)
+
+  
+
+  }
 
 
   onCellClick<K extends keyof CalendarEvent>($event: any, columnName: K, row: CalendarEvent) {
     
-    
-  
-   this.calendarService.updateWeekCalendar(columnName, row, this.editingText)
+  this.calendarService.updateWeekCalendar(columnName, row, this.editingText)
        
   this.calendarService.openModal({
     x: $event.clientX,
     y:  $event.clientY,
+    row,
+    columnName
   })
     
   

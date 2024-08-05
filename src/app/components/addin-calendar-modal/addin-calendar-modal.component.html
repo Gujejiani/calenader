@@ -3,7 +3,8 @@
       <h2>Add Meeting</h2>
       <form [formGroup]="meetingForm" (ngSubmit)="onSubmit()">
         <label for="title">Title:</label>
-        <input type="text" id="title" formControlName="title">
+        <input type="text" id="title" formControlName="title"  [ngClass]="{'error-border': meetingForm.get('title')?.invalid && meetingForm.get('title')?.touched}"> 
+        
   
         <label for="start">Start Time:</label>
         <input type="datetime-local" id="start" formControlName="start">
@@ -14,8 +15,8 @@
         <label for="description">Description:</label>
         <textarea id="description" formControlName="description"></textarea>
   
-        <button type="submit">Add Meeting</button>
-        <button type="button" (click)="closeModal()">Cancel</button>
+        <button [ngClass]="{'form-disabled':!meetingForm.valid  }" [disabled]="!meetingForm.valid "  type="submit">Add Meeting</button>
+        <button  type="button" (click)="closeModal()">Cancel</button>
       </form>
     </div>
   </div>

@@ -63,3 +63,10 @@
     opacity: 0.9;
   }
   
+  .error-border {
+    border: 1px solid red !important;
+  }
+  .form-disabled{
+    pointer-events: none;
+    opacity: 0.5;
+  }

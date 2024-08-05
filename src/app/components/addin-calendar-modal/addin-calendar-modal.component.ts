@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, effect, input, output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CalendarEvent } from '@models/calendar-event';
+import { CalendarEventInfo } from '@models/form-model';
 
 @Component({
   selector: 'app-addin-calendar-modal',
@@ -13,18 +15,24 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class AddInCalendarModalComponent {
   meetingForm: FormGroup = new FormGroup({});
  
-
-  @Input() positionX = '400px';
-  @Input() positionY = '400px';
-
+   positionX = input('400px');
+   positionY = input('400px');
+   startTime = input('12:00');
+   endTime = input('12:00');
+   rowId= input(0)
+   
+  columnName = input('name')
   constructor(private fb: FormBuilder) {}
   closeCompModal = output()
 
+  submitForm = output<CalendarEventInfo>()
   ngOnInit(): void {
     this.meetingForm = this.fb.group({
       title: ['', Validators.required],
-      start: ['', Validators.required],
-      end: ['', Validators.required],
+      start: [this.startTime, Validators.required],
+      end: [this.endTime, Validators.required],
+      columnName: [this.columnName],
+      rowId: [this.rowId],
       description: ['']
     });
 
@@ -34,6 +42,7 @@ export class AddInCalendarModalComponent {
   onSubmit(){
     console.log(this.positionX)
     console.log(this.meetingForm.value);
+    this.submitForm.emit(this.meetingForm.value);
   }
   closeModal(){
   

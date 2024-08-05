@@ -6,7 +6,7 @@ export interface modalConfig {
      [key: string]: any
     };
     outputs: {
-        [key: string]:  ()=>void
+        [key: string]:  <T extends {}>(arg?: T)=>void 
     };
  
     hasBackDrop?: boolean;
