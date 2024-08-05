@@ -1,0 +1,46 @@
+<!-- calendar-weeks.component.html -->
+<div class="calendar-table-container">
+    <div class="calendar-table-scroll">
+    <table mat-table [dataSource]="dataSource()" class="calendar-table">
+      <!-- Time Column -->
+      <ng-container matColumnDef="time">
+        <th mat-header-cell *matHeaderCellDef class="header-cell time-header"></th>
+        <td mat-cell *matCellDef="let element" class="cell time-cell" (click)="onCellClick('time', element)" >{{element.time}}</td>
+      </ng-container>
+  
+      <!-- Columns for each day -->
+      <ng-container matColumnDef="monday">
+        <th mat-header-cell *matHeaderCellDef class="header-cell">Monday</th>
+        <td  mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('monday', element)" >{{element.monday}}</td>
+      </ng-container>
+      <ng-container matColumnDef="tuesday">
+        <th mat-header-cell *matHeaderCellDef class="header-cell">Tuesday</th>
+        <td mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('tuesday', element)">{{element.tuesday}}</td>
+      </ng-container>
+      <ng-container matColumnDef="wednesday">
+        <th mat-header-cell *matHeaderCellDef class="header-cell">Wednesday</th>
+        <td mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('wednesday', element)">{{element.wednesday}}</td>
+      </ng-container>
+      <ng-container matColumnDef="thursday">
+        <th mat-header-cell *matHeaderCellDef class="header-cell">Thursday</th>
+        <td mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('thursday', element)">{{element.thursday}}</td>
+      </ng-container>
+      <ng-container matColumnDef="friday">
+        <th mat-header-cell *matHeaderCellDef class="header-cell">Friday</th>
+        <td mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('friday', element)">{{element.friday}}</td>
+      </ng-container>
+      <ng-container matColumnDef="saturday">
+        <th mat-header-cell *matHeaderCellDef class="header-cell">Saturday</th>
+        <td mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('saturday', element)">{{element.saturday}}</td>
+      </ng-container>
+      <ng-container matColumnDef="sunday">
+        <th mat-header-cell *matHeaderCellDef class="header-cell">Sunday</th>
+        <td mat-cell *matCellDef="let element" class="cell" (click)="onCellClick('sunday', element)">{{element.sunday}}</td>
+      </ng-container>
+  
+      <!-- Header and Row Definitions -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;  "></tr>
+    </table>
+  </div>
+  <div class="calendar-table-container"></div>

@@ -1,6 +1,9 @@
 <div class="calendar" > 
         <div>
-            <app-calendar-header></app-calendar-header>
+            <app-calendar-header
+           
+            (timePeriodChanged)="timePeriodChanged($event)"
+            ></app-calendar-header>
         </div>
-
+         <ng-content></ng-content>
 </div>

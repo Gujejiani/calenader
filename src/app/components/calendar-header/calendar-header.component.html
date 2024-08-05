@@ -17,7 +17,7 @@
     <nav class="calendar-header__nav calendar-header__nav--right">
         
         <div class="calendar-header__nav-select " >
-            <mat-select [(value)]="selectedOption">
+            <mat-select (valueChange)="valueChanged($event)" [(value)]="selectedOption">
                 <mat-option value="today">Today</mat-option>
                 <mat-option value="week">Week</mat-option>
                 <mat-option value="month">Month</mat-option>

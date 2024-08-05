@@ -18,6 +18,12 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/calendar-application",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles.scss",
+                "src/app/scss"
+              ]
+            },
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [

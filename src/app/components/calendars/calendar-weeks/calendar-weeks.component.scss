@@ -1,0 +1,56 @@
+/* calendar-weeks.component.scss */
+
+.calendar-table-container {
+    position: relative;
+    height: 100vh; /* Set the height for vertical scrolling */
+    width: 100%;   /* Ensure the container width is full */
+    overflow: hidden; /* Hide overflow to control scrolling */
+  }
+  
+  /* Scrollable area for the table */
+  .calendar-table-scroll {
+    height: 100%;
+    width: 100%;   /* Make sure the table scrolls horizontally if needed */
+    overflow: auto; /* Enable both vertical and horizontal scrolling */
+  }
+  .mat-app-background {
+    background-color: white;
+  }
+  .calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .header-cell {
+    background-color: #f5f5f5; /* Light gray background for header */
+    padding: 8px;
+    text-align: center;
+    border-bottom: 2px solid #ddd; /* Light gray border */
+  }
+  
+  .cell {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd; /* Light gray border */
+    background-color: #fff ;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light gray background for even rows */
+  }
+  
+  tr:hover {
+    background-color: #e0e0e0; /* Slightly darker gray on hover */
+  }
+  .cell.time-cell {
+    width: 10px;
+    border-left: none;
+    border-bottom: 2px;
+    font-size: 12px !important;
+    text-wrap: nowrap;
+  }
+  
+  th{
+    position: sticky;
+    top: 0;
+  }
