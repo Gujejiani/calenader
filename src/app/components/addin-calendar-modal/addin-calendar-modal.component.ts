@@ -21,21 +21,29 @@ export class AddInCalendarModalComponent implements OnInit, AfterViewInit {
    positionY = input('400px');
    startTime = input('12:00');
    endTime = input('12:00');
-   rowId= input(0)
+   row: CalendarEvent | null =null
    
-  columnName = input('name')
+  columnName = ''
   constructor(private fb: FormBuilder) {}
   closeCompModal = output()
 
+  updateMode =false
+
   submitForm = output<CalendarEventInfo>()
   ngOnInit(): void {
+
+   const found=    this.row?.bookedMeetings.find((booked)=> booked?.rowId === this.row?.id && booked.columnName === this.columnName )
+
+    if(found){
+      this.updateMode =true
+    }
     this.meetingForm = this.fb.group({
-      title: ['', Validators.required],
+      title: [this.updateMode? found?.title: '', Validators.required],
       start: [this.startTime, Validators.required],
       end: [this.endTime, Validators.required],
       columnName: [this.columnName],
-      rowId: [this.rowId],
-      description: ['']
+      rowId: [this.row?.id],
+      description: [this.updateMode? found?.description: '']
     });
     if(this.titleInput){
       this.titleInput.nativeElement.focus();

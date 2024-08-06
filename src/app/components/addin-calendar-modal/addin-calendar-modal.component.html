@@ -15,7 +15,7 @@
         <label for="description">Description:</label>
         <textarea id="description" formControlName="description"></textarea>
   
-        <button [ngClass]="{'form-disabled':!meetingForm.valid  }" [disabled]="!meetingForm.valid "  type="submit">Add Meeting</button>
+        <button [ngClass]="{'form-disabled':!meetingForm.valid  }" [disabled]="!meetingForm.valid "  type="submit">{{ updateMode? 'UPDATE': 'Add Meeting'}}</button>
         <button  type="button" (click)="closeModal()">Cancel</button>
       </form>
     </div>

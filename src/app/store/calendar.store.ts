@@ -40,17 +40,31 @@ export const CalendarStore = signalStore(
       patchState(store, (state)=>{
 
         const updated =  structuredClone(state.weekCalendar).map((data)=>{
-          const foundIndex = data.bookedMeetings.findIndex((booked)=> booked?.rowId === meeting.rowId && booked.columnName === meeting.columnName )
+          let updatingColumnName = ''
+          const foundIndex = data.bookedMeetings.findIndex((booked)=> {
+            if(booked?.rowId === meeting.rowId && booked.columnName === meeting.columnName){
+            
+              updatingColumnName = booked.columnName
+              return true
+            }
+            return false
+          
+          } )
 
           console.log('already added ', data.id === meeting.rowId && foundIndex !==-1)
+          // check if the meeting is already added
           if(data.id === meeting.rowId && foundIndex ===-1){
               
              data.bookedMeetings.push(meeting);
             (data[meeting.columnName as keyof CalendarEvent]  as string ) = meeting.title
+
+            // if the meeting is already added update the meeting
           }else if(data.id === meeting.rowId && foundIndex !==-1){
              data.bookedMeetings.splice(foundIndex, 1)
              data.bookedMeetings.push(meeting);
-             console.log('updated meeting', data.bookedMeetings)
+             console.log('updated meeting', data.bookedMeetings);
+              (data[updatingColumnName as keyof CalendarEvent]  as string ) = meeting.title
+           
           }
           return data
         })

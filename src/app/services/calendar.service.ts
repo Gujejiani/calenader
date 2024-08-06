@@ -24,7 +24,8 @@ export class CalendarService {
 
     updateWeekCalendar<K extends keyof CalendarEvent>(columnName: K, row: CalendarEvent, editingText: string) {
     
-    console.log(columnName, row)
+ 
+    
         
         const updated = structuredClone(this.store.weekCalendar()).map(((data: CalendarEvent)=>{
             if(data.id === row.id){
@@ -86,7 +87,7 @@ export class CalendarService {
                 positionY: `${position.y}px`,
                 startTime: `${today}T${startTime}`,
                 endTime: `${today}T${endTime}`,
-                rowId: modaldata.row.id,
+                row: modaldata.row,
                 columnName: modaldata.columnName
             },
             

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, signal } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { CalendarEvent } from '@models/calendar-event';
 import { CalendarService } from 'services/calendar.service';
@@ -32,7 +32,17 @@ export class CalendarWeeksComponent {
   }
 
 
-  onCellClick<K extends keyof CalendarEvent>($event: any, columnName: K, row: CalendarEvent) {
+  onCellClick<K extends keyof CalendarEvent>($event: MouseEvent, columnNameInfo: K, row: CalendarEvent) {
+ 
+    let columnName = columnNameInfo 
+
+
+    // we are using time as the column name but we want to update the monday column
+    if(columnName === 'time'){
+        columnName='monday' as unknown as K
+     
+    }
+
     
   this.calendarService.updateWeekCalendar(columnName, row, this.editingText)
        
