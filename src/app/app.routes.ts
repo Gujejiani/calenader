@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './page/home-page/home-page.component';
+import { daysGuard } from 'guards/guards/days.guard';
 
 export const routes: Routes = [
   {
@@ -26,6 +27,7 @@ export const routes: Routes = [
           import(
             './components/calendars/calendar-days/calendar-days.component'
           ).then((m) => m.CalendarDaysComponent),
+          canActivate: [daysGuard]
       },
     ],
     
