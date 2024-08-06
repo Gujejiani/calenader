@@ -1,8 +1,9 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import {
   ChangeDetectorRef,
+  Component,
   ElementRef,
-  Injectable,
+ 
   QueryList,
   ViewChildren,
 } from '@angular/core';
@@ -11,7 +12,11 @@ import { CalendarEvent } from '@models/calendar-event';
 import { dropCalculation } from '@utils/utils';
 import { CalendarService } from 'services/calendar.service';
 
-@Injectable()
+@Component({
+  selector: 'app-calendar-weeks',
+  template: '',
+
+})
 export abstract class CalendarBaseClass {
   readonly store;
 
