@@ -25,3 +25,17 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+# ng build  --configuration production --base-href "https://<USERNAME>.github.io/<REPO>/"
+
+
+# ng build  --configuration production --base-href "https://Gujejiani.github.io/calenader/"
+
+# npm install -g angular-cli-ghpages
+
+
+# npx angular-cli-ghpages --dir=dist/<YOUR_PROJECT_NAME>
+
+
+# npx angular-cli-ghpages --dir=dist/calendar-application => check dist folder app name

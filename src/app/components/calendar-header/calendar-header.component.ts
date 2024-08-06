@@ -18,7 +18,7 @@ import { TimePeriod } from '../../models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarHeaderComponent {
-  selectedOption = signal(TimePeriod.WEEK);
+  selectedOption = signal(TimePeriod.DAY);
 
   timePeriodChanged = output<TimePeriod>();
 
