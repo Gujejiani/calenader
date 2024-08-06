@@ -1,3 +1,5 @@
+import { CdkDragDrop } from "@angular/cdk/drag-drop";
+import { ElementRef, QueryList } from "@angular/core";
 
 
 export const getModalPosition = <T extends  {x: number, y: number}>(modalPosition: T) : {x: number, y: number} =>{
@@ -40,4 +42,35 @@ export const getModalPosition = <T extends  {x: number, y: number}>(modalPositio
     if (period === 'PM' && hours !== 12) hours += 12;
     if (period === 'AM' && hours === 12) hours = 0;
     return `${String(hours).padStart(2, '0')}:${String(minutes || 0).padStart(2, '0')}`;
+  }
+
+
+  export function triggerClick(element: HTMLElement) {
+    // Create and dispatch a click event
+    const clickEvent = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    element.dispatchEvent(clickEvent);
+  }
+
+
+  export function dropCalculation(event:  CdkDragDrop<string[]>, calendarCells: QueryList<ElementRef>){
+    const { x, y } = event.dropPoint;
+
+    let targetElement: HTMLElement | null = null;
+    
+
+      calendarCells?.forEach(cell => {
+      const rect = cell.nativeElement.getBoundingClientRect();
+      if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+        targetElement = cell.nativeElement;
+      }
+    });
+
+   
+    if (targetElement) {
+       triggerClick(targetElement);
+    }
   }

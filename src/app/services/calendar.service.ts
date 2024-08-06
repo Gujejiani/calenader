@@ -5,6 +5,7 @@ import { CalendarStore } from "store/calendar.store";
 import { WeekDays } from "store/initial-data";
 import { ModalService } from "./modal.service";
 import { AddInCalendarModalComponent } from "components/addin-calendar-modal/addin-calendar-modal.component";
+import { CalendarDragInfoModel } from '@models/calendar-drag-model';
 
 
 @Injectable({providedIn: 'root'})
@@ -139,6 +140,8 @@ export class CalendarService {
       }
 
 
-     
+     updateStateOnDrop(dragInfo: CalendarDragInfoModel){
+        this.store.moveWithDragAndDrop(dragInfo)
+     }
       
 }
