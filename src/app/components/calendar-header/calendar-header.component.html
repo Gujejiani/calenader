@@ -1,7 +1,7 @@
 <header class="calendar-header">
   <nav class="calendar-header__nav calendar-header__nav--left">
     <a><mat-icon>calendar_today</mat-icon> Calendar</a>
-    <a mat-button class="calendar-header__nav-today">
+    <a (click)="todayClicked()" mat-button class="calendar-header__nav-today">
       <!-- use material button -->
       Today
     </a>

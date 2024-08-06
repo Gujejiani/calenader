@@ -23,7 +23,7 @@ export class CalendarHeaderComponent {
   timePeriodChanged = output<TimePeriod>();
 
   arrowClickNext = output<boolean>();
-
+  todayClick = output<void>();
   valueChanged(event: TimePeriod) {
     console.log(event);
     this.timePeriodChanged.emit(event);
@@ -34,6 +34,10 @@ export class CalendarHeaderComponent {
       this.arrowClickNext.emit(next);
   
   
+  }
+
+  todayClicked(){
+    this.todayClick.emit();
   }
 
 }
