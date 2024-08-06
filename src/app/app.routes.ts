@@ -20,6 +20,14 @@ export const routes: Routes = [
             './components/calendars/calendar-month/calendar-month.component'
           ).then((m) => m.CalendarMonthComponent),
       },
+      {
+        path: 'day',
+        loadComponent: () =>
+          import(
+            './components/calendars/calendar-days/calendar-days.component'
+          ).then((m) => m.CalendarDaysComponent),
+      },
     ],
+    
   },
 ];

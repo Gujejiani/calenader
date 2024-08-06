@@ -1,5 +1,5 @@
 export enum TimePeriod {
-  TODAY = 'today',
+  DAY = 'day',
   WEEK = 'week',
   MONTH = 'month',
 }

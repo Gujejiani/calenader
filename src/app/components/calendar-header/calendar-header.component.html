@@ -6,8 +6,8 @@
       Today
     </a>
     <div class="calendar-header__nav-arrows">
-      <a class="calendar-header__nav-arrow"><mat-icon>arrow_left</mat-icon> </a>
-      <a class="calendar-header__nav-arrow"
+      <a (click)="arrowClick(false)" class="calendar-header__nav-arrow"><mat-icon>arrow_left</mat-icon> </a>
+      <a (click)="arrowClick(true)" class="calendar-header__nav-arrow"
         ><mat-icon>arrow_right</mat-icon>
       </a>
     </div>
@@ -20,7 +20,7 @@
         (valueChange)="valueChanged($event)"
         [(value)]="selectedOption"
       >
-        <mat-option value="today">Today</mat-option>
+        <mat-option value="day">Day</mat-option>
         <mat-option value="week">Week</mat-option>
         <mat-option value="month">Month</mat-option>
       </mat-select>

@@ -1,0 +1,80 @@
+<!-- calendar-weeks.component.html -->
+<div #targetElement class="calendar-table-container">
+    <div
+      cdkDropList
+      (cdkDropListDropped)="drop($event)"
+      class="calendar-table-scroll"
+    >
+      <table
+        [dataSource]="store.weekCalendar()"
+        mat-table
+        [trackBy]="myTrackById"
+        class="calendar-table"
+      >
+        <!-- Time Column -->
+        <ng-container matColumnDef="time">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            class="header-cell time-header"
+          ></th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            class="cell time-cell"
+            #calendarCell
+            (click)="onCellClick($event, 'time', element)"
+          >
+            {{ element.time }}
+          </td>
+        </ng-container>
+  
+        <!-- Columns for each day -->
+        <ng-container [matColumnDef]="day">
+          <th mat-header-cell *matHeaderCellDef class="header-cell">{{day}}</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            class="cell"
+            [ngClass]="{ 'cell--editing': element[day] === editingText }"
+            #calendarCell
+            (click)="onCellClick($event, day, element)"
+          >
+            @if (
+              element[day] === editingText ||
+              determineIfBooked(day, element)
+            ) {
+              <div
+                class="selected-calendar"
+                cdkDrag
+                (cdkDragStarted)="onDragStart(element, day)"
+                (cdkDragEnded)="onDragEnd()"
+              >
+                <span>
+                  {{ element[day] }}
+                </span>
+  
+                <span>{{ element.betweentime }}</span>
+              </div>
+            } @else {
+              <span>
+                {{ element[day] }}
+              </span>
+            }
+          </td>
+        </ng-container>
+     
+      
+     
+  
+     
+    
+  
+        <!-- Header and Row Definitions -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    <div class="calendar-table-container"></div>
+  </div>
+  
