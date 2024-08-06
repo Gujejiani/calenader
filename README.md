@@ -1,41 +1,26 @@
 # CalendarApplication
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
+This project is a simple calendar application built with Angular 18. It showcases various features and modern Angular capabilities.
 
-## Development server
+## Technologies Used
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Angular 18**: The latest version of Angular for building and managing the application.
+- **Signals**: Used for reactive programming within the application.
+- **Angular Material**: Utilized for calendar tables and UI components.
+- **Material Drag and Drop**: Implemented for drag-and-drop functionality within the calendar.
+- **Angular CDK**: Used for dynamic modal components and other common UI patterns.
+- **Reactive Forms**: Implemented for handling form inputs and validations.
+- **NgRx/Signals**: Applied for state management and reactive state handling.
 
-## Code scaffolding
+## Setup and Development
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. **Development Server**
 
-## Build
+   Run `ng serve` to start the development server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+   ```bash
+   ng serve
 
 
-# ng build  --configuration production --base-href "https://<USERNAME>.github.io/<REPO>/"
 
 
-# ng build  --configuration production --base-href "https://Gujejiani.github.io/calenader/"
-
-# npm install -g angular-cli-ghpages
-
-
-# npx angular-cli-ghpages --dir=dist/<YOUR_PROJECT_NAME>
-
-
-# npx angular-cli-ghpages --dir=dist/calendar-application => check dist folder app name
