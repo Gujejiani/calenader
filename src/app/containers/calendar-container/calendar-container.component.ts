@@ -9,35 +9,41 @@ import { ActivatedRoute, Router } from '@angular/router';
   imports: [CalendarHeaderComponent],
   templateUrl: './calendar-container.component.html',
   styleUrl: './calendar-container.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarContainerComponent {
-  constructor(private router: Router, private route: ActivatedRoute) {}
-   days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
+  days = [
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday',
+    'sunday',
+  ];
   TIME_PERIOD = TimePeriod;
   timePeriodChanged(time: TimePeriod) {
     this.router.navigate([`/${time}`]);
   }
 
-  
-  
-
-
-  arrowClickNext(next: boolean){
+  arrowClickNext(next: boolean) {
     const queryParams = this.route.snapshot.queryParams;
-    let day = queryParams['day'] ?? 'monday'
-  
-   const index = this.days.indexOf(day);
+    let day = queryParams['day'] ?? 'monday';
 
-   let nextDay = day;
+    const index = this.days.indexOf(day);
 
-   if(next && nextDay !== 'sunday'){
-      nextDay = this.days[index + 1]
-   }
-    if(!next && nextDay !== 'monday'){
-      nextDay = this.days[index - 1]
+    let nextDay = day;
+
+    if (next && nextDay !== 'sunday') {
+      nextDay = this.days[index + 1];
     }
-
+    if (!next && nextDay !== 'monday') {
+      nextDay = this.days[index - 1];
+    }
 
     this.router.navigate([], {
       queryParams: { day: nextDay },
@@ -45,10 +51,9 @@ export class CalendarContainerComponent {
     });
   }
 
-  todayClick(){
-
+  todayClick() {
     const todayDay = new Date().getDay();
-   
+
     this.router.navigate([], {
       queryParams: { day: this.days[todayDay - 1] },
       queryParamsHandling: 'merge',

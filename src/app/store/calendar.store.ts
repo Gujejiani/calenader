@@ -32,8 +32,7 @@ export const CalendarStore = signalStore(
     },
     addMeeting(meeting: CalendarEventInfo) {
       patchState(store, (state) => {
-
-        // 
+        //
         const updated = structuredClone(state.weekCalendar).map((data) => {
           let updatingColumnName = '';
           const foundIndex = data.bookedMeetings.findIndex((booked) => {
@@ -47,7 +46,6 @@ export const CalendarStore = signalStore(
             return false;
           });
 
-         
           // check if the meeting is already added
           if (data.id === meeting.rowId && foundIndex === -1) {
             data.bookedMeetings.push(meeting);

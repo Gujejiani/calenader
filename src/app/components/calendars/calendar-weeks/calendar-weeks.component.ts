@@ -1,10 +1,5 @@
-
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 
 import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
@@ -18,8 +13,7 @@ import { CalendarBaseClass } from 'abstracts/calendar-base.class';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarWeeksComponent extends CalendarBaseClass {
-  
-  override   displayedColumns: string[] = [
+  override displayedColumns: string[] = [
     'time',
     'monday',
     'tuesday',

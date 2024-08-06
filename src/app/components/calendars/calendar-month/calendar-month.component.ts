@@ -1,4 +1,9 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+} from '@angular/core';
 
 @Component({
   selector: 'app-calendar-month',
@@ -8,7 +13,4 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, Input } from '@angul
   styleUrl: './calendar-month.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CalendarMonthComponent  {
-
- 
-}
+export class CalendarMonthComponent {}

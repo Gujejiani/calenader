@@ -27,9 +27,8 @@ export const routes: Routes = [
           import(
             './components/calendars/calendar-days/calendar-days.component'
           ).then((m) => m.CalendarDaysComponent),
-          canActivate: [daysGuard]
+        canActivate: [daysGuard],
       },
     ],
-    
   },
 ];

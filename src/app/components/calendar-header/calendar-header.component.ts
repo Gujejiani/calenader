@@ -30,14 +30,10 @@ export class CalendarHeaderComponent {
   }
 
   arrowClick(next: boolean) {
-   
-      this.arrowClickNext.emit(next);
-  
-  
+    this.arrowClickNext.emit(next);
   }
 
-  todayClicked(){
+  todayClicked() {
     this.todayClick.emit();
   }
-
 }
