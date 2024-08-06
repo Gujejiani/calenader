@@ -1,8 +1,6 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  Input,
 } from '@angular/core';
 
 @Component({

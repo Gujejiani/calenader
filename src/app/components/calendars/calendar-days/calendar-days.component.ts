@@ -3,16 +3,11 @@ import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  ElementRef,
-  Inject,
   Input,
   OnChanges,
-  QueryList,
   SimpleChanges,
-  ViewChildren,
-  effect,
+
 } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { CalendarBaseClass } from 'abstracts/calendar-base.class';

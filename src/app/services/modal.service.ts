@@ -1,5 +1,5 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { ComponentRef, Injectable } from '@angular/core';
 import { modalConfig } from '@models/modal-config';
 

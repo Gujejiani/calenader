@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CalendarHeaderComponent } from '../../components/calendar-header/calendar-header.component';
 import { TimePeriod } from '../../models';
 import { ActivatedRoute, Router } from '@angular/router';

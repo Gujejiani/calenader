@@ -5,7 +5,6 @@ import {
   Injectable,
   QueryList,
   ViewChildren,
-  effect,
 } from '@angular/core';
 import { CalendarDragInfoModel } from '@models/calendar-drag-model';
 import { CalendarEvent } from '@models/calendar-event';

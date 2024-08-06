@@ -3,11 +3,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  Input,
   OnInit,
   AfterViewInit,
   ViewChild,
-  effect,
   input,
   output,
 } from '@angular/core';
