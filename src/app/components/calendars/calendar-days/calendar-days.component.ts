@@ -27,7 +27,7 @@ export class CalendarDaysComponent
   @Input() day = 'monday';
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes ', changes);
+   
     this.displayedColumns = ['time', changes['day'].currentValue];
     this.changeDetectorRef.detectChanges();
   }

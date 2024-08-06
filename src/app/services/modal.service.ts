@@ -47,7 +47,7 @@ export class ModalService {
         const output = config.outputs['closeCompModal'] as Function;
         output();
 
-        console.log('back drop clicked');
+        
         this.closePortal();
       });
     this.subscriptions.add(backDropSubscription);

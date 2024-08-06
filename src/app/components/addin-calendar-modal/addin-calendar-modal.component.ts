@@ -72,12 +72,12 @@ export class AddInCalendarModalComponent implements OnInit, AfterViewInit {
     }
   }
   onSubmit() {
-    console.log(this.positionX);
-    console.log(this.meetingForm.value);
+  
+   
     this.submitForm.emit(this.meetingForm.value);
   }
   closeModal() {
     this.closeCompModal.emit();
-    console.log('close modal');
+   
   }
 }

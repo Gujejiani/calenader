@@ -25,7 +25,7 @@ export class CalendarHeaderComponent {
   arrowClickNext = output<boolean>();
   todayClick = output<void>();
   valueChanged(event: TimePeriod) {
-    console.log(event);
+
     this.timePeriodChanged.emit(event);
   }
 

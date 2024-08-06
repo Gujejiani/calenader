@@ -24,7 +24,7 @@ export const CalendarStore = signalStore(
           weekCalendar, // Assuming you want to replace the entire weekCalendar
         };
 
-        // console.log('updated state ', updatedState.weekCalendar);
+        
 
         // Return the updated state
         return { weekCalendar: updatedState.weekCalendar };
@@ -56,14 +56,15 @@ export const CalendarStore = signalStore(
           } else if (data.id === meeting.rowId && foundIndex !== -1) {
             data.bookedMeetings.splice(foundIndex, 1);
             data.bookedMeetings.push(meeting);
-            console.log('updated meeting', data.bookedMeetings);
+           
             (data[updatingColumnName as keyof CalendarEvent] as string) =
               meeting.title;
           }
+          
           return data;
         });
 
-        console.log('added meeting', updated);
+    
 
         return { weekCalendar: updated };
       });
@@ -96,7 +97,7 @@ export const CalendarStore = signalStore(
         const movedToRow = calendarDepCopy.find(
           (data) => data.id === dragInfo.movedTo?.id,
         );
-        console.log('moved to row ', movedToRow);
+    
 
         // update  moving booking data
         if (booking.length) {

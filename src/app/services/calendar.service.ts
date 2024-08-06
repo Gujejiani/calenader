@@ -82,7 +82,7 @@ export class CalendarService {
 
       outputs: {
         closeCompModal: () => {
-          console.log('close modal');
+         
           this.clearSelectedDate();
           this.updateWeekCalendar(
             'time',
@@ -102,7 +102,7 @@ export class CalendarService {
   }
 
   clearSelectedDate() {
-    console.log('am called');
+   
     const updated = structuredClone(this.store.weekCalendar()).map(
       (data: CalendarEvent) => {
         Object.keys(WeekDays).forEach((key) => {
