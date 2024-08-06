@@ -101,6 +101,7 @@ export class CalendarService {
               submitForm: <CalendarBookedEventInfo>(data: CalendarBookedEventInfo)=>{
                 
                 this.store.addMeeting(data as any)
+                this.modalService.closePortal()
              
               },
               

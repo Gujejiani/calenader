@@ -3,7 +3,7 @@
       <h2>Add Meeting</h2>
       <form [formGroup]="meetingForm" (ngSubmit)="onSubmit()">
         <label for="title">Title:</label>
-        <input type="text" id="title" formControlName="title"  [ngClass]="{'error-border': meetingForm.get('title')?.invalid && meetingForm.get('title')?.touched}"> 
+        <input #titleInput type="text" placeholder="Add Title" id="title" formControlName="title"  [ngClass]="{'error-border': meetingForm.get('title')?.invalid && meetingForm.get('title')?.touched}"> 
         
   
         <label for="start">Start Time:</label>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, effect, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input,OnInit, AfterViewInit, ViewChild, effect, input, output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CalendarEvent } from '@models/calendar-event';
 import { CalendarEventInfo } from '@models/form-model';
@@ -12,7 +12,9 @@ import { CalendarEventInfo } from '@models/form-model';
   styleUrl: './addin-calendar-modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AddInCalendarModalComponent {
+export class AddInCalendarModalComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('titleInput') titleInput: ElementRef<HTMLInputElement> | null = null;
   meetingForm: FormGroup = new FormGroup({});
  
    positionX = input('400px');
@@ -35,10 +37,17 @@ export class AddInCalendarModalComponent {
       rowId: [this.rowId],
       description: ['']
     });
-
+    if(this.titleInput){
+      this.titleInput.nativeElement.focus();
+    }
     
   }
 
+  ngAfterViewInit(): void {
+    if(this.titleInput){
+      this.titleInput.nativeElement.focus();
+    }
+  }
   onSubmit(){
     console.log(this.positionX)
     console.log(this.meetingForm.value);
