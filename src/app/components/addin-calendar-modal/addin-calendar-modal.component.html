@@ -1,22 +1,38 @@
-<div class="modal-container" [ngStyle]="{'top': positionY, 'left': positionX}" >
-    <div class="modal-content">
-      <h2>Add Meeting</h2>
-      <form [formGroup]="meetingForm" (ngSubmit)="onSubmit()">
-        <label for="title">Title:</label>
-        <input #titleInput type="text" placeholder="Add Title" id="title" formControlName="title"  [ngClass]="{'error-border': meetingForm.get('title')?.invalid && meetingForm.get('title')?.touched}"> 
-        
-  
-        <label for="start">Start Time:</label>
-        <input type="datetime-local" id="start" formControlName="start">
-  
-        <label for="end">End Time:</label>
-        <input type="datetime-local" id="end" formControlName="end">
-  
-        <label for="description">Description:</label>
-        <textarea id="description" formControlName="description"></textarea>
-  
-        <button [ngClass]="{'form-disabled':!meetingForm.valid  }" [disabled]="!meetingForm.valid "  type="submit">{{ updateMode? 'UPDATE': 'Add Meeting'}}</button>
-        <button  type="button" (click)="closeModal()">Cancel</button>
-      </form>
-    </div>
+<div class="modal-container" [ngStyle]="{ top: positionY, left: positionX }">
+  <div class="modal-content">
+    <h2>Add Meeting</h2>
+    <form [formGroup]="meetingForm" (ngSubmit)="onSubmit()">
+      <label for="title">Title:</label>
+      <input
+        #titleInput
+        type="text"
+        placeholder="Add Title"
+        id="title"
+        formControlName="title"
+        [ngClass]="{
+          'error-border':
+            meetingForm.get('title')?.invalid &&
+            meetingForm.get('title')?.touched,
+        }"
+      />
+
+      <label for="start">Start Time:</label>
+      <input type="datetime-local" id="start" formControlName="start" />
+
+      <label for="end">End Time:</label>
+      <input type="datetime-local" id="end" formControlName="end" />
+
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description"></textarea>
+
+      <button
+        [ngClass]="{ 'form-disabled': !meetingForm.valid }"
+        [disabled]="!meetingForm.valid"
+        type="submit"
+      >
+        {{ updateMode ? "UPDATE" : "Add Meeting" }}
+      </button>
+      <button type="button" (click)="closeModal()">Cancel</button>
+    </form>
   </div>
+</div>

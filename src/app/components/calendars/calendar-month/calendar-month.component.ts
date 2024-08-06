@@ -6,8 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   imports: [],
   templateUrl: './calendar-month.component.html',
   styleUrl: './calendar-month.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CalendarMonthComponent {
-
-}
+export class CalendarMonthComponent {}

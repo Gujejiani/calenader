@@ -1,198 +1,275 @@
 <!-- calendar-weeks.component.html -->
 <div #targetElement class="calendar-table-container">
-    <div cdkDropList    (cdkDropListDropped)="drop($event)" class="calendar-table-scroll">
-    <table [dataSource]="store.weekCalendar()"  mat-table   [trackBy]="myTrackById" class="calendar-table">
+  <div
+    cdkDropList
+    (cdkDropListDropped)="drop($event)"
+    class="calendar-table-scroll"
+  >
+    <table
+      [dataSource]="store.weekCalendar()"
+      mat-table
+      [trackBy]="myTrackById"
+      class="calendar-table"
+    >
       <!-- Time Column -->
       <ng-container matColumnDef="time">
-        <th mat-header-cell *matHeaderCellDef class="header-cell time-header"></th>
-        <td mat-cell *matCellDef="let element" class="cell time-cell"  #calendarCell  (click)="onCellClick($event ,'time', element)" >{{element.time}}</td>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="header-cell time-header"
+        ></th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="cell time-cell"
+          #calendarCell
+          (click)="onCellClick($event, 'time', element)"
+        >
+          {{ element.time }}
+        </td>
       </ng-container>
-  
+
       <!-- Columns for each day -->
       <ng-container matColumnDef="monday">
-  
-        <th  mat-header-cell *matHeaderCellDef class="header-cell">Monday</th>
-        <td  mat-cell *matCellDef="let element" class="cell" [ngClass]="{'cell--editing': element.monday===editingText}"  #calendarCell  (click)="onCellClick($event ,'monday', element)" >
+        <th mat-header-cell *matHeaderCellDef class="header-cell">Monday</th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="cell"
+          [ngClass]="{ 'cell--editing': element.monday === editingText }"
+          #calendarCell
+          (click)="onCellClick($event, 'monday', element)"
+        >
+          @if (
+            element.monday === editingText ||
+            determineIfBooked("monday", element)
+          ) {
+            <div
+              class="selected-calendar"
+              cdkDrag
+              (cdkDragStarted)="onDragStart(element, 'monday')"
+              (cdkDragEnded)="onDragEnd()"
+            >
+              <span>
+                {{ element.monday }}
+              </span>
 
-         @if (element.monday ===editingText || determineIfBooked('monday', element)) {
-          <div class="selected-calendar"  cdkDrag (cdkDragStarted)="onDragStart(element, 'monday')" (cdkDragEnded)="onDragEnd()" >
-
+              <span>{{ element.betweentime }}</span>
+            </div>
+          } @else {
             <span>
-              {{element.monday}}
+              {{ element.monday }}
             </span>
-      
-  
-       
-              <span>{{element.betweentime}}</span>
-           
-          </div>
-         } @else {
-          <span>
-            {{element.monday}}
-          </span>
-         }
-         
-
+          }
         </td>
       </ng-container>
       <ng-container matColumnDef="tuesday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Tuesday</th>
-        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.tuesday===editingText}"  #calendarCell  (click)="onCellClick($event ,'tuesday', element)">
-          
-      
-    
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="cell"
+          [ngClass]="{ 'cell--editing': element.tuesday === editingText }"
+          #calendarCell
+          (click)="onCellClick($event, 'tuesday', element)"
+        >
+          @if (
+            element.tuesday === editingText ||
+            determineIfBooked("tuesday", element)
+          ) {
+            <div
+              class="selected-calendar"
+              cdkDrag
+              (cdkDragStarted)="onDragStart(element, 'tuesday')"
+              (cdkDragEnded)="onDragEnd()"
+            >
+              <span>
+                {{ element.tuesday }}
+              </span>
 
-        @if (element.tuesday ===editingText || determineIfBooked('tuesday', element)) {
-          <div class="selected-calendar" cdkDrag (cdkDragStarted)="onDragStart(element, 'tuesday')" (cdkDragEnded)="onDragEnd()" >
-
+              <span>{{ element.betweentime }}</span>
+            </div>
+          } @else {
             <span>
-              {{element.tuesday}}
+              {{ element.tuesday }}
             </span>
-      
-  
-       
-              <span>{{element.betweentime}}</span>
-           
-          </div>
-         } @else {
-          <span>
-            {{element.tuesday}}
-          </span>
-         }
-      </ng-container>
+          }
+        </td></ng-container
+      >
       <ng-container matColumnDef="wednesday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Wednesday</th>
-        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.wednesday===editingText}"  #calendarCell  (click)="onCellClick($event ,'wednesday', element)">
-            
-    
-
-          @if (element.wednesday ===editingText || determineIfBooked('wednesday', element)) {
-            <div class="selected-calendar" cdkDrag (cdkDragStarted)="onDragStart(element, 'wednesday')" (cdkDragEnded)="onDragEnd()" >
-  
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="cell"
+          [ngClass]="{ 'cell--editing': element.wednesday === editingText }"
+          #calendarCell
+          (click)="onCellClick($event, 'wednesday', element)"
+        >
+          @if (
+            element.wednesday === editingText ||
+            determineIfBooked("wednesday", element)
+          ) {
+            <div
+              class="selected-calendar"
+              cdkDrag
+              (cdkDragStarted)="onDragStart(element, 'wednesday')"
+              (cdkDragEnded)="onDragEnd()"
+            >
               <span>
-                {{element.wednesday}}
+                {{ element.wednesday }}
               </span>
-        
-    
-         
-                <span>{{element.betweentime}}</span>
-             
+
+              <span>{{ element.betweentime }}</span>
             </div>
-           } @else {
+          } @else {
             <span>
-              {{element.wednesday}}
+              {{ element.wednesday }}
             </span>
-           }
-        
+          }
         </td>
       </ng-container>
       <ng-container matColumnDef="thursday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Thursday</th>
-        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.thursday===editingText}"  #calendarCell  (click)="onCellClick($event ,'thursday', element)">
-            
-    
-          @if (element.thursday ===editingText || determineIfBooked('thursday', element)) {
-            <div class="selected-calendar" cdkDrag (cdkDragStarted)="onDragStart(element, 'thursday')" (cdkDragEnded)="onDragEnd()" >
-  
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="cell"
+          [ngClass]="{ 'cell--editing': element.thursday === editingText }"
+          #calendarCell
+          (click)="onCellClick($event, 'thursday', element)"
+        >
+          @if (
+            element.thursday === editingText ||
+            determineIfBooked("thursday", element)
+          ) {
+            <div
+              class="selected-calendar"
+              cdkDrag
+              (cdkDragStarted)="onDragStart(element, 'thursday')"
+              (cdkDragEnded)="onDragEnd()"
+            >
               <span>
-                {{element.thursday}}
+                {{ element.thursday }}
               </span>
-        
-    
-         
-                <span>{{element.betweentime}}</span>
-             
+
+              <span>{{ element.betweentime }}</span>
             </div>
-           } @else {
+          } @else {
             <span>
-              {{element.thursday}}
+              {{ element.thursday }}
             </span>
-           }
-        
-          </td>
+          }
+        </td>
       </ng-container>
       <ng-container matColumnDef="friday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Friday</th>
-        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.friday===editingText}"  #calendarCell  (click)="onCellClick($event ,'friday', element)">
-            
-    
-
-          @if (element.friday ===editingText || determineIfBooked('friday', element)) {
-            <div class="selected-calendar" cdkDrag (cdkDragStarted)="onDragStart(element, 'friday')" (cdkDragEnded)="onDragEnd()" >
-  
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="cell"
+          [ngClass]="{ 'cell--editing': element.friday === editingText }"
+          #calendarCell
+          (click)="onCellClick($event, 'friday', element)"
+        >
+          @if (
+            element.friday === editingText ||
+            determineIfBooked("friday", element)
+          ) {
+            <div
+              class="selected-calendar"
+              cdkDrag
+              (cdkDragStarted)="onDragStart(element, 'friday')"
+              (cdkDragEnded)="onDragEnd()"
+            >
               <span>
-                {{element.friday}}
+                {{ element.friday }}
               </span>
-        
-    
-         
-                <span>{{element.betweentime}}</span>
-             
+
+              <span>{{ element.betweentime }}</span>
             </div>
-           } @else {
+          } @else {
             <span>
-              {{element.friday}}
+              {{ element.friday }}
             </span>
-           }
-      </td>
+          }
+        </td>
       </ng-container>
       <ng-container matColumnDef="saturday">
         <th mat-header-cell *matHeaderCellDef class="header-cell">Saturday</th>
-        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.saturday===editingText}"  #calendarCell  (click)="onCellClick($event ,'saturday', element)">
-             <span>
-            {{element.saturday}}
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="cell"
+          [ngClass]="{ 'cell--editing': element.saturday === editingText }"
+          #calendarCell
+          (click)="onCellClick($event, 'saturday', element)"
+        >
+          <span>
+            {{ element.saturday }}
           </span>
-    
 
-          @if (element.saturday ===editingText || determineIfBooked('saturday', element)) {
-            <div class="selected-calendar" cdkDrag  (cdkDragStarted)="onDragStart(element, 'saturday')" (cdkDragEnded)="onDragEnd()">
-  
+          @if (
+            element.saturday === editingText ||
+            determineIfBooked("saturday", element)
+          ) {
+            <div
+              class="selected-calendar"
+              cdkDrag
+              (cdkDragStarted)="onDragStart(element, 'saturday')"
+              (cdkDragEnded)="onDragEnd()"
+            >
               <span>
-                {{element.saturday}}
+                {{ element.saturday }}
               </span>
-        
-    
-         
-                <span>{{element.betweentime}}</span>
-             
+
+              <span>{{ element.betweentime }}</span>
             </div>
-           } @else {
+          } @else {
             <span>
-              {{element.saturday}}
+              {{ element.saturday }}
             </span>
-           }
-          </td>
+          }
+        </td>
       </ng-container>
       <ng-container matColumnDef="sunday">
-        <th mat-header-cell *matHeaderCellDef class="header-cell"  >Sunday</th>
-        <td mat-cell *matCellDef="let element" class="cell"  [ngClass]="{'cell--editing': element.sunday===editingText}"  #calendarCell  (click)="onCellClick($event ,'sunday', element)">
-            
-    
-          @if (element.sunday ===editingText || determineIfBooked('sunday', element) ) {
-            <div class="selected-calendar" cdkDrag (cdkDragStarted)="onDragStart(element, 'sunday')" (cdkDragEnded)="onDragEnd()" >
-  
+        <th mat-header-cell *matHeaderCellDef class="header-cell">Sunday</th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="cell"
+          [ngClass]="{ 'cell--editing': element.sunday === editingText }"
+          #calendarCell
+          (click)="onCellClick($event, 'sunday', element)"
+        >
+          @if (
+            element.sunday === editingText ||
+            determineIfBooked("sunday", element)
+          ) {
+            <div
+              class="selected-calendar"
+              cdkDrag
+              (cdkDragStarted)="onDragStart(element, 'sunday')"
+              (cdkDragEnded)="onDragEnd()"
+            >
               <span>
-                {{element.sunday}}
+                {{ element.sunday }}
               </span>
-        
-    
-         
-                <span>{{element.betweentime}}</span>
-             
+
+              <span>{{ element.betweentime }}</span>
             </div>
-           } @else {
+          } @else {
             <span>
-              {{element.sunday}}
+              {{ element.sunday }}
             </span>
-           }
-      </td>
+          }
+        </td>
       </ng-container>
-  
+
       <!-- Header and Row Definitions -->
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;  ">
-      
-      </tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
   <div class="calendar-table-container"></div>
+</div>

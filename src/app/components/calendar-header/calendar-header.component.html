@@ -1,31 +1,31 @@
 <header class="calendar-header">
-    <nav class="calendar-header__nav calendar-header__nav--left">
-        <a ><mat-icon>calendar_today</mat-icon> Calendar</a>
-        <a mat-button  class="calendar-header__nav-today" >
-            <!-- use material button -->
-            Today
-        </a>
-        <div class="calendar-header__nav-arrows" >
-            <a class="calendar-header__nav-arrow" ><mat-icon>arrow_left</mat-icon>
-            </a>
-            <a class="calendar-header__nav-arrow" ><mat-icon>arrow_right</mat-icon>
-            </a>
-        </div>
-       
-        <div>August 2024</div>
-    </nav>
-    <nav class="calendar-header__nav calendar-header__nav--right">
-        
-        <div class="calendar-header__nav-select " >
-            <mat-select (valueChange)="valueChanged($event)" [(value)]="selectedOption">
-                <mat-option value="today">Today</mat-option>
-                <mat-option value="week">Week</mat-option>
-                <mat-option value="month">Month</mat-option>
-              </mat-select>
-        </div>
-      
+  <nav class="calendar-header__nav calendar-header__nav--left">
+    <a><mat-icon>calendar_today</mat-icon> Calendar</a>
+    <a mat-button class="calendar-header__nav-today">
+      <!-- use material button -->
+      Today
+    </a>
+    <div class="calendar-header__nav-arrows">
+      <a class="calendar-header__nav-arrow"><mat-icon>arrow_left</mat-icon> </a>
+      <a class="calendar-header__nav-arrow"
+        ><mat-icon>arrow_right</mat-icon>
+      </a>
+    </div>
 
-      
-        <a href="#help">Help</a>
-    </nav>
+    <div>August 2024</div>
+  </nav>
+  <nav class="calendar-header__nav calendar-header__nav--right">
+    <div class="calendar-header__nav-select">
+      <mat-select
+        (valueChange)="valueChanged($event)"
+        [(value)]="selectedOption"
+      >
+        <mat-option value="today">Today</mat-option>
+        <mat-option value="week">Week</mat-option>
+        <mat-option value="month">Month</mat-option>
+      </mat-select>
+    </div>
+
+    <a href="#help">Help</a>
+  </nav>
 </header>

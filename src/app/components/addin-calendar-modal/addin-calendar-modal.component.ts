@@ -1,6 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Input,OnInit, AfterViewInit, ViewChild, effect, input, output } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  effect,
+  input,
+  output,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CalendarEvent } from '@models/calendar-event';
 import { CalendarEventInfo } from '@models/form-model';
 
@@ -10,60 +26,59 @@ import { CalendarEventInfo } from '@models/form-model';
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './addin-calendar-modal.component.html',
   styleUrl: './addin-calendar-modal.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddInCalendarModalComponent implements OnInit, AfterViewInit {
-
-  @ViewChild('titleInput') titleInput: ElementRef<HTMLInputElement> | null = null;
+  @ViewChild('titleInput') titleInput: ElementRef<HTMLInputElement> | null =
+    null;
   meetingForm: FormGroup = new FormGroup({});
- 
-   positionX = input('400px');
-   positionY = input('400px');
-   startTime = input('12:00');
-   endTime = input('12:00');
-   row: CalendarEvent | null =null
-   
-  columnName = ''
+
+  positionX = input('400px');
+  positionY = input('400px');
+  startTime = input('12:00');
+  endTime = input('12:00');
+  row: CalendarEvent | null = null;
+
+  columnName = '';
   constructor(private fb: FormBuilder) {}
-  closeCompModal = output()
+  closeCompModal = output();
 
-  updateMode =false
+  updateMode = false;
 
-  submitForm = output<CalendarEventInfo>()
+  submitForm = output<CalendarEventInfo>();
   ngOnInit(): void {
+    const found = this.row?.bookedMeetings.find(
+      (booked) =>
+        booked?.rowId === this.row?.id && booked.columnName === this.columnName,
+    );
 
-   const found=    this.row?.bookedMeetings.find((booked)=> booked?.rowId === this.row?.id && booked.columnName === this.columnName )
-
-    if(found){
-      this.updateMode =true
+    if (found) {
+      this.updateMode = true;
     }
     this.meetingForm = this.fb.group({
-      title: [this.updateMode? found?.title: '', Validators.required],
+      title: [this.updateMode ? found?.title : '', Validators.required],
       start: [this.startTime, Validators.required],
       end: [this.endTime, Validators.required],
       columnName: [this.columnName],
       rowId: [this.row?.id],
-      description: [this.updateMode? found?.description: '']
+      description: [this.updateMode ? found?.description : ''],
     });
-    if(this.titleInput){
+    if (this.titleInput) {
       this.titleInput.nativeElement.focus();
     }
-    
   }
 
   ngAfterViewInit(): void {
-    if(this.titleInput){
+    if (this.titleInput) {
       this.titleInput.nativeElement.focus();
     }
   }
-  onSubmit(){
-    console.log(this.positionX)
+  onSubmit() {
+    console.log(this.positionX);
     console.log(this.meetingForm.value);
     this.submitForm.emit(this.meetingForm.value);
   }
-  closeModal(){
-  
-
+  closeModal() {
     this.closeCompModal.emit();
     console.log('close modal');
   }

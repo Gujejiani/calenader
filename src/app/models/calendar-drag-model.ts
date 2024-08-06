@@ -1,11 +1,9 @@
-import { CalendarEvent } from ".";
+import { CalendarEvent } from '.';
 
+export interface CalendarDragInfoModel {
+  prevRow: CalendarEvent | null;
+  prevColumnName: string;
 
-export interface CalendarDragInfoModel{ 
-    
-    prevRow: CalendarEvent | null;
-    prevColumnName: string;
-
-    movedTo: CalendarEvent | null;
-    movedToColumnName: string;
+  movedTo: CalendarEvent | null;
+  movedToColumnName: string;
 }

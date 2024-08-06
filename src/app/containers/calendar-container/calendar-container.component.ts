@@ -8,13 +8,12 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CalendarHeaderComponent],
   templateUrl: './calendar-container.component.html',
-  styleUrl: './calendar-container.component.scss'
+  styleUrl: './calendar-container.component.scss',
 })
 export class CalendarContainerComponent {
-
-  constructor(private router: Router){}
-  TIME_PERIOD=TimePeriod
-  timePeriodChanged(time: TimePeriod){
-    this.router.navigate([`/${time}`])
+  constructor(private router: Router) {}
+  TIME_PERIOD = TimePeriod;
+  timePeriodChanged(time: TimePeriod) {
+    this.router.navigate([`/${time}`]);
   }
 }
