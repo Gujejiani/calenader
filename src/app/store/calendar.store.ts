@@ -1,20 +1,42 @@
+import { inject } from '@angular/core';
 import { CalendarDragInfoModel } from './../models/calendar-drag-model';
 import { CalendarEventInfo } from '@models/form-model';
 import { CalendarEvent } from '@models/calendar-event';
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
-import { weekCalendarInitialData } from './initial-data';
+import { patchState, signalStore, withHooks, withMethods, withState } from '@ngrx/signals';
+import { HttpCalendarService } from 'http-services/http-calendar.service';
+import { catchError, map, of } from 'rxjs';
+
 
 type CalendarState = {
   weekCalendar: CalendarEvent[];
 };
 
 const initialState: CalendarState = {
-  weekCalendar: weekCalendarInitialData,
+  weekCalendar: [],
 };
 
 export const CalendarStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
+  withHooks({
+    onInit(store,calendarService = inject(HttpCalendarService) ) {
+   
+      calendarService.getMeetingsData().pipe(
+        map(res => res.weekCalendarInitialData), // Transform response if necessary
+        catchError(error => {
+          console.error('Error fetching meetings data', error);
+          return of([]); // Return an empty array or handle the error as needed
+        })
+      ).subscribe(weekCalendar => {
+        patchState(store, (state) => ({
+          ...state,
+          weekCalendar
+        }));
+        console.log('Fetched data:', weekCalendar);
+      });
+      
+    },
+  }),
   withMethods((store) => ({
     updateWeekCalendar(weekCalendar: CalendarEvent[]) {
       patchState(store, (state) => {

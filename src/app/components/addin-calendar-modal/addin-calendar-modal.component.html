@@ -1,6 +1,6 @@
 <div class="modal-container" [ngStyle]="{ top: positionY, left: positionX }">
   <div class="modal-content">
-    <h2>Add Meeting</h2>
+    <h2>{{modalName}}</h2>
     <form [formGroup]="meetingForm" (ngSubmit)="onSubmit()">
       <label for="title">Title:</label>
       <input
