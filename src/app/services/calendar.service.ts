@@ -83,7 +83,7 @@ export class CalendarService {
       outputs: {
         closeCompModal: () => {
          
-          this.clearSelectedDate();
+          this.clearSelectedDate(modaldata.row.id, modaldata.columnName);
           this.updateWeekCalendar(
             'time',
             this.getStore().weekCalendar()[0],
@@ -97,18 +97,34 @@ export class CalendarService {
           this.store.addMeeting(data as any);
           this.modalService.closePortal();
         },
+        
+        deleteMeeting: ()=>{
+          this.store.deleteMeeting(modaldata.row.id, modaldata.columnName);
+          this.modalService.closePortal();
+        }
+        
       },
     });
   }
 
-  clearSelectedDate() {
+  clearSelectedDate(rowId: number, columnName: string) {
    
     const updated = structuredClone(this.store.weekCalendar()).map(
       (data: CalendarEvent) => {
-        Object.keys(WeekDays).forEach((key) => {
+        Object.keys(WeekDays).forEach((key) => {   
           if (data[key as keyof CalendarEvent] === 'no title') {
             (data[key as keyof CalendarEvent] as string) = '';
           }
+
+          if (data.id === rowId && key === columnName) {
+            const meeting = data.bookedMeetings.find(meeting => meeting.rowId === rowId && meeting.columnName === columnName);
+            if(meeting){
+              (data[key as keyof CalendarEvent] as string) = meeting.title;
+            }
+           
+          }
+
+          
         });
         return data;
       },

@@ -122,5 +122,24 @@ export const CalendarStore = signalStore(
         return { ...state, weekCalendar: calendarDepCopy };
       });
     },
+    deleteMeeting(rowId: number, columnName: string) {
+      patchState(store, (state) => {
+        const calendarDepCopy = structuredClone(state.weekCalendar);
+
+        const row = calendarDepCopy.find((data) => data.id === rowId);
+
+        if(row){
+          ( row[columnName as keyof CalendarEvent] as string) = '';
+          row.bookedMeetings = row.bookedMeetings.filter(
+            (booked) => booked.columnName !== columnName,
+          );
+        }
+
+     
+
+
+        return { weekCalendar: calendarDepCopy };
+      });
+    }
   })),
 );

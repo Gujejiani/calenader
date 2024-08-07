@@ -44,7 +44,7 @@ textarea {
   resize: vertical;
 }
 
-button {
+.button {
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
@@ -54,11 +54,11 @@ button {
   margin-right: 10px;
 }
 
-button[type="button"] {
+.button[type="button"] {
   background-color: #ccc;
 }
 
-button:hover {
+.button:hover {
   opacity: 0.9;
 }
 
@@ -68,4 +68,8 @@ button:hover {
 .form-disabled {
   pointer-events: none;
   opacity: 0.5;
+}
+
+.delete_button{
+  background-color: rgba(255, 0, 0, 0.5)  !important;
 }

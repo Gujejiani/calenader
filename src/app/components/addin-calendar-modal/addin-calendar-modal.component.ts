@@ -44,6 +44,7 @@ export class AddInCalendarModalComponent implements OnInit, AfterViewInit {
   updateMode = false;
 
   submitForm = output<CalendarEventInfo>();
+  deleteMeeting = output<void>();
   ngOnInit(): void {
     const found = this.row?.bookedMeetings.find(
       (booked) =>
@@ -79,5 +80,9 @@ export class AddInCalendarModalComponent implements OnInit, AfterViewInit {
   closeModal() {
     this.closeCompModal.emit();
    
+  }
+
+  deleteAppointment(){
+    this.deleteMeeting.emit();
   }
 }

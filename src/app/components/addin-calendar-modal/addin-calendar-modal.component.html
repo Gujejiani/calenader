@@ -26,13 +26,20 @@
       <textarea id="description" formControlName="description"></textarea>
 
       <button
+      class="button"
         [ngClass]="{ 'form-disabled': !meetingForm.valid }"
         [disabled]="!meetingForm.valid"
         type="submit"
       >
         {{ updateMode ? "UPDATE" : "Add Meeting" }}
       </button>
-      <button type="button" (click)="closeModal()">Cancel</button>
+      @if(updateMode){
+        <button type="button" class="button delete_button" (click)="deleteAppointment()">Delete</button>
+
+      }
+      <button  class="button" type="button"  (click)="closeModal()">Cancel</button>
+     
+
     </form>
   </div>
 </div>
